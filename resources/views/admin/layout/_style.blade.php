@@ -6,4 +6,6 @@
 <link rel="stylesheet" href="{{asset('vendor/jvectormap/jquery-jvectormap.css')}}" />
 <!-- End plugin css for this page -->
 <!-- inject:css -->
+<link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}" />
+<link rel="stylesheet" href="{{asset('/vendor/datatables/datatables.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/style.css')}}">

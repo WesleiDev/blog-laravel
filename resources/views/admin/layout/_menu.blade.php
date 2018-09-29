@@ -22,7 +22,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.tags')}}">
                 <span class="menu-title">Tags</span>
                 <i class="icon-wrench menu-icon"></i>
             </a>

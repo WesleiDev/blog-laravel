@@ -36,6 +36,7 @@
 <!-- container-scroller -->
 
 @include('admin.layout._script')
+@yield('script')
 </body>
 
 </html>
