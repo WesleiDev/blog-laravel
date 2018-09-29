@@ -4,11 +4,11 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Tags <a type="button"
+                    <h4 class="card-title">Categoria <a type="button"
                                                    class="btn btn-primary btn-fw"
-                                                   href="{{route('admin.tag.adicionar')}}"
-                                                    >Adicionar Tag <i class="fa fa-plus"></i> </a></h4>
-                    <table class="table table-striped" id="tag-table">
+                                                   href="{{route('admin.categoria.adicionar')}}"
+                                                    >Adicionar Categoria <i class="fa fa-plus"></i> </a></h4>
+                    <table class="table table-striped" id="categoria-table">
                         <thead>
                         <tr>
                             <th>Nome</th>
@@ -26,9 +26,9 @@
 
 @section('script')
     <script>
-        var $TABLE_TAG = null;
+        var $TABLE_CATEGORIA = null;
         $(function() {
-             $TABLE_TAG =  $('#tag-table').DataTable({
+            $TABLE_CATEGORIA =  $('#categoria-table').DataTable({
                 language:{
                     "url":"/js/lang/data-table-portugues-brasil.json"
                 },
@@ -37,7 +37,7 @@
                 colReorder: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('admin.tag.consultar') !!}',
+                ajax: '{!! route('admin.categoria.consultar') !!}',
                 columns: [
                     { data: 'nome', name: 'nome' },
                     { data: 'acoes', name: 'acoes' },
@@ -48,24 +48,24 @@
             });
         });
 
-        //Excluir a tag
+        //Excluir a Categoria
         $('html').on('click', '.confirm', function(){
             var id = $(this).data('id');
 
             swal({
-                title: 'Excluir Tag',
-                text: 'Deseja realmente excluir a tag selecionada ?',
+                title: 'Excluir Categoria',
+                text: 'Deseja realmente excluir a Categora selecionada ?',
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
             }).then((confirm) => {
                 if (confirm) {
                     $.ajax({
-                        url: '/tag/'+id,
+                        url: '/categoria/'+id,
                         method: 'delete',
                         success: function(results){
                             if(results.result){
-                                $TABLE_TAG.draw()
+                                $TABLE_CATEGORIA.draw()
                                 swal(results.data, {
                                     icon: "success",
                                 });

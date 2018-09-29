@@ -8,4 +8,5 @@
 <!-- inject:css -->
 <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}" />
 <link rel="stylesheet" href="{{asset('/vendor/datatables/datatables.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/template/style.css')}}">
 <link rel="stylesheet" href="{{asset('css/style.css')}}">
