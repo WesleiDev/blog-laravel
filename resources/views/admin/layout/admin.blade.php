@@ -6,7 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Stellar Admin</title>
+
 
     @include('admin.layout._style')
     <!-- endinject -->
@@ -37,6 +40,11 @@
 
 @include('admin.layout._script')
 @yield('script')
+@if(Session::has('mensagem'))
+    <script>
+        notify("{{Session::get('mensagem')['status']}}","{{Session::get('mensagem')['msg']}}");
+    </script>
+@endif
 </body>
 
 </html>

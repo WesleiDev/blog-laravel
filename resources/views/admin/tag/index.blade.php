@@ -8,7 +8,7 @@
                                                    class="btn btn-primary btn-fw"
                                                    href="{{route('admin.tag.adicionar')}}"
                                                     >Adicionar Tag <i class="fa fa-plus"></i> </a></h4>
-                    <table class="table table-striped" id="condPagto-table">
+                    <table class="table table-striped" id="tag-table">
                         <thead>
                         <tr>
                             <th>Nome</th>
@@ -26,8 +26,9 @@
 
 @section('script')
     <script>
+        var $TABLE_TAG = null;
         $(function() {
-            $('#condPagto-table').DataTable({
+             $TABLE_TAG =  $('#tag-table').DataTable({
                 language:{
                     "url":"/js/lang/data-table-portugues-brasil.json"
                 },
@@ -46,5 +47,40 @@
                 ]
             });
         });
+
+        //Excluir a tag
+        $('html').on('click', '.confirm', function(){
+            var id = $(this).data('id');
+
+            swal({
+                title: 'Excluir Tag',
+                text: 'Deseja realmente excluir a tag seecionada ?',
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((confirm) => {
+                if (confirm) {
+                    $.ajax({
+                        url: '/tag/'+id,
+                        method: 'delete',
+                        success: function(results){
+                            if(results.result){
+                                $TABLE_TAG.draw()
+                                swal(results.data, {
+                                    icon: "success",
+                                });
+                            }else{
+                                swal(results.data, {
+                                    icon: "error",
+                                });
+
+                            }
+
+                        }
+                    })
+                }
+            });
+        })
+
     </script>
 @endsection

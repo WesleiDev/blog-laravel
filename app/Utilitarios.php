@@ -228,7 +228,8 @@ class Utilitarios
                 data-msg="Deseja realmente excluir o registro selecionado?"
                 title="'.$botoes[$i]['nome'].'"
                 class="confirm btn-table btn btn-icon '.($botoes[$i]['disabled']==false?'disabled':'').'"
-                href="#"><i class="'.$icone.'"></i></a>';
+                href="void:javascript(0)"
+                data-id="'.$botoes[$i]['url'].'"><i class="'.$icone.'"></i></a>';
             }else if($botoes[$i]['tipo'] == 'editar'){
                 $icone = $botoes[$i]['class'];
                 $return = $return . '<a href="'.$botoes[$i]['url'].'" 

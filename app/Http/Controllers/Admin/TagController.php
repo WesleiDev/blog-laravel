@@ -11,9 +11,10 @@ use DataTables;
 class TagController extends Controller
 {
     protected $tag;
-
-    public function __construct(Tag $tag){
+    protected $utilitarios;
+    public function __construct(Tag $tag, Utilitarios $utilitarios){
         $this->tag = $tag;
+        $this->utilitarios = $utilitarios;
     }
 
     public function index(){
@@ -37,7 +38,7 @@ class TagController extends Controller
         foreach ($registros as $index =>$tag){
             $registros[$index]['acoes'] = Utilitarios::getBtnAction([
                 ['tipo'=> 'editar', 'nome'=> 'Editar', 'class'=> 'fa fa-edit fa-2x', 'url'=>route('admin.tag.editar', [$tag['id']]),'disabled'=>true],
-                ['tipo'=> 'excluir', 'nome'=> 'Excluir', 'class'=> 'fa fa-remove fa-2x', 'url'=> '', 1,'disabled'=>true],
+                ['tipo'=> 'excluir', 'nome'=> 'Excluir', 'class'=> 'fa fa-remove fa-2x', 'url'=> $tag['id'],'disabled'=>true],
             ]);
         }
         $response->original['data'] = $registros;
@@ -47,9 +48,10 @@ class TagController extends Controller
     public function salvar(Request $request){
         try{
             Tag::create($request->all());
-
+            \Session::flash('mensagem', ['msg'=>'Tag Salva com successo', 'status'=>'sucesso']);
         }catch(\Exception $e){
-            dd('Erro ao salvar: '.$e->getMessage());
+            \Session::flash('mensagem', ['msg'=>'Erro ao salvar tag: '.$e->getMessage(), 'status'=>'erro']);
+
         }
         return redirect()->route('admin.tags');
     }
@@ -59,9 +61,9 @@ class TagController extends Controller
             $data = $request->all();
 
             Tag::find($data['id'])->update($data);
-
+            \Session::flash('mensagem', ['msg'=>'Tag Atualizada com successo', 'status'=>'sucesso']);
         }catch(\Exception $e){
-            dd('Erro ao atualizar: '.$e->getMessage());
+            \Session::flash('mensagem', ['msg'=>'Erro ao atualizar tag: '.$e->getMessage(), 'status'=>'erro']);
         }
         return redirect()->route('admin.tags');
     }
@@ -69,6 +71,16 @@ class TagController extends Controller
     public function editar(Tag $tag){
         return view('admin.tag.editar', compact('tag'));
 
+    }
+
+    public function delete(Tag $tag){
+        try{
+            $tag->delete();
+        }catch(\Exception $e){
+            return Utilitarios::formatResponse('Erro ao excluir tag: '.$e->getMessage(), false);
+        }
+
+        return Utilitarios::formatResponse('Tag Excluida com sucesso', true);
     }
 
 }

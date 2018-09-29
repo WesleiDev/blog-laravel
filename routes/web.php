@@ -22,5 +22,6 @@ Route::post('/tag/salvar', ['as' => 'admin.tag.salvar', 'uses' => 'Admin\TagCont
 Route::post('/tag/atualizar', ['as' => 'admin.tag.atualizar', 'uses' => 'Admin\TagController@atualizar']);
 Route::get('/tag/editar/{tag}', ['as' => 'admin.tag.editar', 'uses' => 'Admin\TagController@editar']);
 Route::get('/tag/consultar', ['as' => 'admin.tag.consultar', 'uses' => 'Admin\TagController@consultar']);
+Route::delete('/tag/{tag}', ['as' => 'admin.tag.delete', 'uses' => 'Admin\TagController@delete']);
 Route::post('/teste', ['as' => 'teste', 'uses' => 'HomeController@teste']);
 //-----------------------------------------------FIM TAG----------------------------------------------------//

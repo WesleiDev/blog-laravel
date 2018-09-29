@@ -20,6 +20,8 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "summernote": "^0.8.10"
+        "bootstrap4-notify": "^4.0.3",
+        "summernote": "^0.8.10",
+        "sweetalert": "^2.1.0"
     }
 }
