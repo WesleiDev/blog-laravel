@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AutorTableSeeder extends Seeder
+class AuthorTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,8 @@ class AutorTableSeeder extends Seeder
      */
     public function run()
     {
-        if(!\App\Models\Autor::all()->count()){
-            factory(\App\Models\Autor::class, 5)->create();
+        if(!\App\Models\Author::all()->count()){
+            factory(\App\Models\Author::class, 5)->create();
         }
     }
 }

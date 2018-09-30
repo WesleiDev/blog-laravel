@@ -17,31 +17,31 @@ Route::get('/',['as' => 'admin.home', 'uses'=> function () {
 
 //-----------------------------------------------INICIO TAG-------------------------------------------------//
 Route::get('/tags', ['as' => 'admin.tags', 'uses' => 'Admin\TagController@index']);
-Route::get('/tag/adicionar', ['as' => 'admin.tag.adicionar', 'uses' => 'Admin\TagController@adicionar']);
-Route::post('/tag/salvar', ['as' => 'admin.tag.salvar', 'uses' => 'Admin\TagController@salvar']);
-Route::post('/tag/atualizar', ['as' => 'admin.tag.atualizar', 'uses' => 'Admin\TagController@atualizar']);
-Route::get('/tag/editar/{tag}', ['as' => 'admin.tag.editar', 'uses' => 'Admin\TagController@editar']);
-Route::get('/tag/consultar', ['as' => 'admin.tag.consultar', 'uses' => 'Admin\TagController@consultar']);
+Route::get('/tag/add', ['as' => 'admin.tag.add', 'uses' => 'Admin\TagController@add']);
+Route::post('/tag/save', ['as' => 'admin.tag.save', 'uses' => 'Admin\TagController@save']);
+Route::post('/tag/update', ['as' => 'admin.tag.update', 'uses' => 'Admin\TagController@update']);
+Route::get('/tag/edit/{tag}', ['as' => 'admin.tag.edit', 'uses' => 'Admin\TagController@edit']);
+Route::get('/tag/search', ['as' => 'admin.tag.search', 'uses' => 'Admin\TagController@search']);
 Route::delete('/tag/{tag}', ['as' => 'admin.tag.delete', 'uses' => 'Admin\TagController@delete']);
 Route::post('/teste', ['as' => 'teste', 'uses' => 'HomeController@teste']);
 //-----------------------------------------------FIM TAG----------------------------------------------------//
 
 //-----------------------------------------------INICIO CATEGORIA-------------------------------------------------//
-Route::get('/categorias', ['as' => 'admin.categorias', 'uses' => 'Admin\CategoriaController@index']);
-Route::get('/categoria/adicionar', ['as' => 'admin.categoria.adicionar', 'uses' => 'Admin\CategoriaController@adicionar']);
-Route::post('/categoria/salvar', ['as' => 'admin.categoria.salvar', 'uses' => 'Admin\CategoriaController@salvar']);
-Route::post('/categoria/atualizar', ['as' => 'admin.categoria.atualizar', 'uses' => 'Admin\CategoriaController@atualizar']);
-Route::get('/categoria/editar/{categoria}', ['as' => 'admin.categoria.editar', 'uses' => 'Admin\CategoriaController@editar']);
-Route::get('/categoria/consultar', ['as' => 'admin.categoria.consultar', 'uses' => 'Admin\CategoriaController@consultar']);
-Route::delete('/categoria/{categoria}', ['as' => 'admin.categoria.delete', 'uses' => 'Admin\CategoriaController@delete']);
+Route::get('/categories', ['as' => 'admin.categories', 'uses' => 'Admin\CategoryController@index']);
+Route::get('/category/add', ['as' => 'admin.category.add', 'uses' => 'Admin\CategoryController@add']);
+Route::post('/category/salve', ['as' => 'admin.category.save', 'uses' => 'Admin\CategoryController@save']);
+Route::post('/category/update', ['as' => 'admin.category.update', 'uses' => 'Admin\CategoryController@update']);
+Route::get('/category/edit/{category}', ['as' => 'admin.category.edit', 'uses' => 'Admin\CategoryController@edit']);
+Route::get('/category/search', ['as' => 'admin.category.search', 'uses' => 'Admin\CategoryController@search']);
+Route::delete('/category/{category}', ['as' => 'admin.category.delete', 'uses' => 'Admin\CategoryController@delete']);
 //-----------------------------------------------FIM CATEGORIA----------------------------------------------------//
 
 //-----------------------------------------------INICIO AUTOR-------------------------------------------------//
-Route::get('/autores', ['as' => 'admin.autores', 'uses' => 'Admin\AutorController@index']);
-Route::get('/autor/adicionar', ['as' => 'admin.autor.adicionar', 'uses' => 'Admin\AutorController@adicionar']);
-Route::post('/autor/salvar', ['as' => 'admin.autor.salvar', 'uses' => 'Admin\AutorController@salvar']);
-Route::post('/autor/atualizar', ['as' => 'admin.autor.atualizar', 'uses' => 'Admin\AutorController@atualizar']);
-Route::get('/autor/editar/{autor}', ['as' => 'admin.autor.editar', 'uses' => 'Admin\AutorController@editar']);
-Route::get('/autor/consultar', ['as' => 'admin.autor.consultar', 'uses' => 'Admin\AutorController@consultar']);
-Route::delete('/autor/{autor}', ['as' => 'admin.autor.delete', 'uses' => 'Admin\AutorController@delete']);
+Route::get('/authors', ['as' => 'admin.authors', 'uses' => 'Admin\AuthorController@index']);
+Route::get('/author/add', ['as' => 'admin.author.add', 'uses' => 'Admin\AuthorController@add']);
+Route::post('/author/save', ['as' => 'admin.author.save', 'uses' => 'Admin\AuthorController@save']);
+Route::post('/author/update', ['as' => 'admin.author.update', 'uses' => 'Admin\AuthorController@update']);
+Route::get('/author/edit/{author}', ['as' => 'admin.author.edit', 'uses' => 'Admin\AuthorController@edit']);
+Route::get('/author/search', ['as' => 'admin.author.search', 'uses' => 'Admin\AuthorController@search']);
+Route::delete('/author/{author}', ['as' => 'admin.author.delete', 'uses' => 'Admin\AuthorController@delete']);
 //-----------------------------------------------FIM AUTOR----------------------------------------------------//

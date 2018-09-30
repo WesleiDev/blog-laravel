@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Autor extends Model
+class Author extends Model
 {
-    protected $fillable = ['nome', 'image'];
+    protected $fillable = ['name', 'image'];
 
     protected $appends = ['url_image'];
 
@@ -14,7 +14,7 @@ class Autor extends Model
         if($this->attributes['image'] === null){
             return '/images/avatar_default.jpg';
         }else{
-            return env('APP_URL').'/documentos/autor/'.$this->attributes['image'];
+            return env('APP_URL').'/documentos/author/'.$this->attributes['image'];
         }
     }
 }

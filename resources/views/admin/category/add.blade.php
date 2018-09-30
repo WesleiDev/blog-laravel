@@ -4,10 +4,10 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Editar Autor</h4>
-                    <form class="forms-sample" action="{{route('admin.autor.atualizar')}}" method="post" enctype="multipart/form-data">
+                    <h4 class="card-title">Adicionar Categoria</h4>
+                    <form class="forms-sample" action="{{route('admin.category.save')}}" method="post">
                         {{csrf_field()}}
-                        @include('admin.autor._form')
+                        @include('admin.category._form')
                     </form>
                 </div>
             </div>

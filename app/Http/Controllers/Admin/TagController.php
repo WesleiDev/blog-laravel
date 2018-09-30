@@ -22,22 +22,22 @@ class TagController extends Controller
 
     }
 
-    public function adicionar(){
-        return view('admin.tag.adicionar');
+    public function add(){
+        return view('admin.tag.add');
     }
-    public function consultar()
+    public function search()
     {
 
-        $model = Tag::select(['id','nome']);
+        $model = Tag::select(['id','name']);
 
         $response = DataTables::eloquent($model)
-            ->blacklist(['acoes'])
+            ->blacklist(['action'])
             ->toJson();
 
         $registros = $response->original['data'];
         foreach ($registros as $index =>$tag){
-            $registros[$index]['acoes'] = Utilitarios::getBtnAction([
-                ['tipo'=> 'editar', 'nome'=> 'Editar', 'class'=> 'fa fa-edit fa-2x', 'url'=>route('admin.tag.editar', [$tag['id']]),'disabled'=>true],
+            $registros[$index]['action'] = Utilitarios::getBtnAction([
+                ['tipo'=> 'editar', 'nome'=> 'Editar', 'class'=> 'fa fa-edit fa-2x', 'url'=>route('admin.tag.edit', [$tag['id']]),'disabled'=>true],
                 ['tipo'=> 'excluir', 'nome'=> 'Excluir', 'class'=> 'fa fa-remove fa-2x', 'url'=> $tag['id'],'disabled'=>true],
             ]);
         }
@@ -45,7 +45,7 @@ class TagController extends Controller
 
         return $response->original;
     }
-    public function salvar(Request $request){
+    public function save(Request $request){
         try{
             Tag::create($request->all());
             \Session::flash('mensagem', ['msg'=>'Tag Salva com successo', 'status'=>'sucesso']);
@@ -56,7 +56,7 @@ class TagController extends Controller
         return redirect()->route('admin.tags');
     }
 
-    public function atualizar(Request $request){
+    public function update(Request $request){
         try{
             $data = $request->all();
 
@@ -68,8 +68,8 @@ class TagController extends Controller
         return redirect()->route('admin.tags');
     }
 
-    public function editar(Tag $tag){
-        return view('admin.tag.editar', compact('tag'));
+    public function edit(Tag $tag){
+        return view('admin.tag.edit', compact('tag'));
 
     }
 

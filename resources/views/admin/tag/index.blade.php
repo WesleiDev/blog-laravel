@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Tags <a type="button"
                                                    class="btn btn-primary btn-fw"
-                                                   href="{{route('admin.tag.adicionar')}}"
+                                                   href="{{route('admin.tag.add')}}"
                                                     >Adicionar Tag <i class="fa fa-plus"></i> </a></h4>
                     <table class="table table-striped" id="tag-table">
                         <thead>
@@ -37,10 +37,10 @@
                 colReorder: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('admin.tag.consultar') !!}',
+                ajax: '{!! route('admin.tag.search') !!}',
                 columns: [
-                    { data: 'nome', name: 'nome' },
-                    { data: 'acoes', name: 'acoes' },
+                    { data: 'name', name: 'name' },
+                    { data: 'action', name: 'action' },
                 ],
                 "columnDefs": [
                     { "width": "15%", "targets": 1 }

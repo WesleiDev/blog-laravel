@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CategoriaTableSeeder extends Seeder
+class CategoryTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,8 @@ class CategoriaTableSeeder extends Seeder
      */
     public function run()
     {
-        if(!\App\Models\Categoria::all()->count()){
-            factory(\App\Models\Categoria::class, 5)->create();
+        if(!\App\Models\Category::all()->count()){
+            factory(\App\Models\Category::class, 5)->create();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Autor;
+use App\Models\Author;
 use App\Utilitarios;
 use App\UtilitariosFile;
 use Carbon\Carbon;
@@ -12,93 +12,93 @@ use DataTables;
 use Illuminate\Support\Facades\Storage;
 
 
-class AutorController extends Controller
+class AuthorController extends Controller
 {
     public function index(){
-        return view('admin.autor.index');
+        return view('admin.author.index');
 
     }
 
-    public function adicionar(){
-        return view('admin.autor.adicionar');
+    public function add(){
+        return view('admin.author.add');
     }
-    public function consultar()
+    public function search()
     {
 
-        $model = Autor::select(['id','nome', 'image']);
+        $model = Author::select(['id','name', 'image']);
 
 
         $response = DataTables::eloquent($model)
-            ->blacklist(['acoes'])
+            ->blacklist(['action'])
             ->addColumn('url_image',function($model){
                 return "<img src=$model->url_image    />";
             })
             ->rawColumns(['url_image'])
             ->toJson();
 
-        $registros = $response->original['data'];
-        foreach ($registros as $index =>$autor){
-            $registros[$index]['acoes'] = Utilitarios::getBtnAction([
-                ['tipo'=> 'editar', 'nome'=> 'Editar', 'class'=> 'fa fa-edit fa-2x', 'url'=>route('admin.autor.editar', [$autor['id']]),'disabled'=>true],
-                ['tipo'=> 'excluir', 'nome'=> 'Excluir', 'class'=> 'fa fa-remove fa-2x', 'url'=> $autor['id'],'disabled'=>true],
+        $records = $response->original['data'];
+        foreach ($records as $index =>$author){
+            $records[$index]['action'] = Utilitarios::getBtnAction([
+                ['tipo'=> 'editar', 'nome'=> 'Editar', 'class'=> 'fa fa-edit fa-2x', 'url'=>route('admin.author.edit', [$author['id']]),'disabled'=>true],
+                ['tipo'=> 'excluir', 'nome'=> 'Excluir', 'class'=> 'fa fa-remove fa-2x', 'url'=> $author['id'],'disabled'=>true],
             ]);
         }
-        $response->original['data'] = $registros;
+        $response->original['data'] = $records;
 
         return $response->original;
     }
-    public function salvar(Request $request){
+    public function save(Request $request){
         try{
             $data = $request->all();
             $image = $request->file('image');
 
-            $data['image'] = UtilitariosFile::saveImage($image, 'autor')['nome_imagem'];
+            $data['image'] = UtilitariosFile::saveImage($image, 'author')['nome_imagem'];
 
-            Autor::create($data);
+            Author::create($data);
 
             \Session::flash('mensagem', ['msg'=>'Autor Salvo com successo', 'status'=>'sucesso']);
         }catch(\Exception $e){
             \Session::flash('mensagem', ['msg'=>'Erro ao salvar Autor: '.$e->getMessage(), 'status'=>'erro']);
 
         }
-        return redirect()->route('admin.autores');
+        return redirect()->route('admin.authors');
     }
 
-    public function atualizar(Request $request){
+    public function update(Request $request){
         try{
             $data = $request->all();
-            $autor = Autor::find($data['id']);
+            $author = Author::find($data['id']);
 
             $image = $request->file('image');
 
             if(isset($image)){
-                $nova_imagem = UtilitariosFile::saveImage($image, 'autor')['nome_imagem'];//Se salvar sem erros exlui a imagem na parte de baixo
+                $nova_imagem = UtilitariosFile::saveImage($image, 'author')['nome_imagem'];//Se salvar sem erros exlui a imagem na parte de baixo
                 unset($data['image']);
-                UtilitariosFile::removeImage($autor->image, 'autor');
+                UtilitariosFile::removeImage($author->image, 'author');
                 $data['image'] = $nova_imagem;
             }else{
                 unset($data['image']);
             }
 
-            $autor->update($data);
+            $author->update($data);
 
 
             \Session::flash('mensagem', ['msg'=>'Autor atualizado com successo', 'status'=>'sucesso']);
         }catch(\Exception $e){
             \Session::flash('mensagem', ['msg'=>'Erro ao atualizar Autor: '.$e->getMessage(), 'status'=>'erro']);
         }
-        return redirect()->route('admin.autores');
+        return redirect()->route('admin.authors');
     }
 
-    public function editar(Autor $autor){
-        return view('admin.autor.editar', compact('autor'));
+    public function edit(Author $author){
+        return view('admin.author.edit', compact('author'));
 
     }
 
-    public function delete(Autor $autor){
+    public function delete(Author $author){
         try{
-            UtilitariosFile::removeImage($autor->image, 'autor');
-            $autor->delete();
+            UtilitariosFile::removeImage($author->image, 'author');
+            $author->delete();
         }catch(\Exception $e){
             return Utilitarios::formatResponse('Erro ao excluir Autor: '.$e->getMessage(), false);
         }

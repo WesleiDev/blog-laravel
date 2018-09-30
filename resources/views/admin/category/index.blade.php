@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Categoria <a type="button"
                                                    class="btn btn-primary btn-fw"
-                                                   href="{{route('admin.categoria.adicionar')}}"
+                                                   href="{{route('admin.category.add')}}"
                                                     >Adicionar Categoria <i class="fa fa-plus"></i> </a></h4>
                     <table class="table table-striped" id="categoria-table">
                         <thead>
@@ -37,10 +37,10 @@
                 colReorder: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('admin.categoria.consultar') !!}',
+                ajax: '{!! route('admin.category.search') !!}',
                 columns: [
-                    { data: 'nome', name: 'nome' },
-                    { data: 'acoes', name: 'acoes' },
+                    { data: 'name', name: 'name' },
+                    { data: 'action', name: 'action' },
                 ],
                 "columnDefs": [
                     { "width": "15%", "targets": 1 }
@@ -61,7 +61,7 @@
             }).then((confirm) => {
                 if (confirm) {
                     $.ajax({
-                        url: '/categoria/'+id,
+                        url: '/category/'+id,
                         method: 'delete',
                         success: function(results){
                             if(results.result){

@@ -5,9 +5,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Editar Categoria</h4>
-                    <form class="forms-sample" action="{{route('admin.categoria.atualizar')}}" method="post">
+                    <form class="forms-sample" action="{{route('admin.category.update')}}" method="post">
                         {{csrf_field()}}
-                        @include('admin.categoria._form')
+                        @include('admin.category._form')
                     </form>
                 </div>
             </div>

@@ -10,13 +10,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.autores')}}">
+            <a class="nav-link" href="{{route('admin.authors')}}">
                 <span class="menu-title">Autor</span>
                 <i class="icon-wrench menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.categorias')}}">
+            <a class="nav-link" href="{{route('admin.categories')}}">
                 <span class="menu-title">Categoria</span>
                 <i class="icon-wrench menu-icon"></i>
             </a>

@@ -5,9 +5,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Adicionar Autor</h4>
-                    <form class="forms-sample" action="{{route('admin.autor.salvar')}}" method="post" enctype="multipart/form-data">
+                    <form class="forms-sample" action="{{route('admin.author.save')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
-                        @include('admin.autor._form')
+                        @include('admin.author._form')
                     </form>
                 </div>
             </div>

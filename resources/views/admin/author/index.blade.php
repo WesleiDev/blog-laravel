@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Autores <a type="button"
                                                    class="btn btn-primary btn-fw"
-                                                   href="{{route('admin.autor.adicionar')}}"
+                                                   href="{{route('admin.author.add')}}"
                                                     >Adicionar Autor <i class="fa fa-plus"></i> </a></h4>
                     <table class="table table-striped" id="autor-table">
                         <thead>
@@ -39,11 +39,11 @@
                 colReorder: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('admin.autor.consultar') !!}',
+                ajax: '{!! route('admin.author.search') !!}',
                 columns: [
                     { data: 'url_image', name: 'url_image' },
-                    { data: 'nome', name: 'nome' },
-                    { data: 'acoes', name: 'acoes' },
+                    { data: 'name', name: 'name' },
+                    { data: 'action', name: 'action' },
                 ],
                 "columnDefs": [
                     { "width": "15%", "targets": 2 },
@@ -65,7 +65,7 @@
             }).then((confirm) => {
                 if (confirm) {
                     $.ajax({
-                        url: '/autor/'+id,
+                        url: '/author/'+id,
                         method: 'delete',
                         success: function(results){
                             if(results.result){
