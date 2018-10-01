@@ -3,4 +3,5 @@
 <p><span>Autor<span></p>
 <p><span>Tags<span></p>
 <p><span>Categorias<span></p>
+<p><span>Pots<span></p>
     
