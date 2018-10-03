@@ -45,3 +45,13 @@ Route::get('/author/edit/{author}', ['as' => 'admin.author.edit', 'uses' => 'Adm
 Route::get('/author/search', ['as' => 'admin.author.search', 'uses' => 'Admin\AuthorController@search']);
 Route::delete('/author/{author}', ['as' => 'admin.author.delete', 'uses' => 'Admin\AuthorController@delete']);
 //-----------------------------------------------FIM AUTOR----------------------------------------------------//
+
+//-----------------------------------------------INICIO POST-------------------------------------------------//
+Route::get('/posts', ['as' => 'admin.posts', 'uses' => 'Admin\PostController@index']);
+Route::get('/post/add', ['as' => 'admin.post.add', 'uses' => 'Admin\PostController@add']);
+Route::post('/post/save', ['as' => 'admin.post.save', 'uses' => 'Admin\PostController@save']);
+Route::post('/post/update', ['as' => 'admin.post.update', 'uses' => 'Admin\PostController@update']);
+Route::get('/post/edit/{post}', ['as' => 'admin.post.edit', 'uses' => 'Admin\PostController@edit']);
+Route::get('/post/search', ['as' => 'admin.post.search', 'uses' => 'Admin\PostController@search']);
+Route::delete('/post/{post}', ['as' => 'admin.post.delete', 'uses' => 'Admin\PostController@delete']);
+//-----------------------------------------------FIM AUTOR----------------------------------------------------//

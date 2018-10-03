@@ -4,7 +4,7 @@
             <span class="nav-link">BLOG</span>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.posts')}}">
                 <span class="menu-title">Post</span>
                 <i class="icon-speedometer menu-icon"></i>
             </a>

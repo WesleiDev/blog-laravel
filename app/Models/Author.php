@@ -14,7 +14,7 @@ class Author extends Model
         if($this->attributes['image'] === null){
             return '/images/avatar_default.jpg';
         }else{
-            return env('APP_URL').'/documentos/author/'.$this->attributes['image'];
+            return env('APP_URL').'/documentos/authors/'.$this->attributes['image'];
         }
     }
 }

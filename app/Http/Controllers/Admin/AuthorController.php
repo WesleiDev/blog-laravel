@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Author;
 use App\Utilitarios;
 use App\UtilitariosFile;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DataTables;
-use Illuminate\Support\Facades\Storage;
+
 
 
 class AuthorController extends Controller
@@ -50,9 +49,6 @@ class AuthorController extends Controller
     public function save(Request $request){
         try{
             $data = $request->all();
-            $image = $request->file('image');
-
-            $data['image'] = UtilitariosFile::saveImage($image, 'author')['nome_imagem'];
 
             Author::create($data);
 
@@ -68,18 +64,6 @@ class AuthorController extends Controller
         try{
             $data = $request->all();
             $author = Author::find($data['id']);
-
-            $image = $request->file('image');
-
-            if(isset($image)){
-                $nova_imagem = UtilitariosFile::saveImage($image, 'author')['nome_imagem'];//Se salvar sem erros exlui a imagem na parte de baixo
-                unset($data['image']);
-                UtilitariosFile::removeImage($author->image, 'author');
-                $data['image'] = $nova_imagem;
-            }else{
-                unset($data['image']);
-            }
-
             $author->update($data);
 
 
@@ -97,7 +81,6 @@ class AuthorController extends Controller
 
     public function delete(Author $author){
         try{
-            UtilitariosFile::removeImage($author->image, 'author');
             $author->delete();
         }catch(\Exception $e){
             return Utilitarios::formatResponse('Erro ao excluir Autor: '.$e->getMessage(), false);

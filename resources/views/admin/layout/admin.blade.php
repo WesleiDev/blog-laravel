@@ -12,6 +12,8 @@
 
 
     @include('admin.layout._style')
+    @yield('style')
+    @stack('style')
     <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
 </head>
@@ -40,6 +42,7 @@
 
 @include('admin.layout._script')
 @yield('script')
+@stack('script')
 @if(Session::has('mensagem'))
     <script>
         notify("{{Session::get('mensagem')['status']}}","{{Session::get('mensagem')['msg']}}");

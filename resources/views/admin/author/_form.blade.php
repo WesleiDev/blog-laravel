@@ -1,9 +1,10 @@
 <input type="hidden" value="{{isset($author) ? $author->id : 0}}" name="id">
 <div class="form-group col-12">
+    <img id="output_image" src="{{isset($author) ? $author->url_image : ''}}"/>
     <input type="file" accept="image/*" onchange="preview_image(event)"  name="image" id="image">
 </div>
 <div class="form-group col-12">
-    <img id="output_image" src="{{isset($author) ? $author->url_image : ''}}"/>
+
 </div>
 <div class="form-group col-12 left">
     <label for="nome">Nome</label>

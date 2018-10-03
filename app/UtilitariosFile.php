@@ -7,29 +7,32 @@
  */
 namespace App;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class UtilitariosFile
 {
-    public static function saveImage($image, $tipo){
+    public static function saveImage(Model $model){
         try{
-            if(isset($image)){
+            if(!is_string($model->image) && $model->image->isValid()){
+                $tipo = $model->getTable();
                 $currentDate = Carbon::now()->toDateString();
-                $imageName  = $tipo.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+                $imageName  = $tipo.'-'.$currentDate.'-'.uniqid().'.'.$model->image->getClientOriginalExtension();
 
                 if(!Storage::disk('public')->exists('post'))
                 {
                     Storage::disk('public')->makeDirectory('post');
                 }
 
-                $postImage = Image::make($image)->resize(1600,1066)->stream();
+                $postImage = Image::make($model->image)->resize(1600,1066)->stream();
                 Storage::disk('public')->put('/documentos/'.$tipo.'/'.$imageName,$postImage);
             }else{
-                $imageName = null;
+                $imageName = $model->getOriginal('image');
             }
 
-            return ['nome_imagem' => $imageName];
+            return  $imageName;
         }catch(\Exception $e){
             throw new \Exception('Erro ao salvar imagem: '.$e->getMessage());
         }
@@ -44,5 +47,7 @@ class UtilitariosFile
         }
 
     }
+
+
 
 }
