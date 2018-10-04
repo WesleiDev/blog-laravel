@@ -84,7 +84,12 @@ class PostController extends Controller
         $authors    = Author::all();
         $categories = Category::all();
         $tags       = Tag::all();
-        return view('admin.post.edit', compact('post','authors', 'categories', 'tags'));
+        $tags_post  = [];
+        foreach($post->tags as $tag){
+            array_push($tags_post, $tag->id);
+        }
+
+        return view('admin.post.edit', compact('post','authors', 'categories', 'tags', 'tags_post'));
 
     }
 

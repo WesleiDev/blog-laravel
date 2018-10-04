@@ -51,7 +51,7 @@
                 <label >Tags</label>
                 <select name="tags[]" id="tags" class="form-control" multiple="multiple" value="1">
                     @foreach($tags as $tag)
-                        <option {{isset($post) && in_array(1, $post->tags->toArray()) ? 'selected': ''}}
+                        <option {{isset($post) && in_array($tag->id, $tags_post) ? 'selected': ''}}
                                 value="{{$tag->id}}"> {{$tag->name}} </option>
                     @endforeach
                 </select>
