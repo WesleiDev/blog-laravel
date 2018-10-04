@@ -17,6 +17,8 @@
 <script src="{{asset('/vendor/datatables/datatables.min.js')}}"></script>
 <script src="{{asset('/vendor/sweetalert/dist/sweetalert.min.js')}}"></script>
 <script src="{{asset('/vendor/bootstrap4-notify/bootstrap-notify.min.js')}}"></script>
+<script src="{{asset('/vendor/select2/dist/js/select2.min.js')}}"></script>
 <script src="{{asset('/js/utils.js')}}"></script>
+
 
 <!-- End custom js for this page-->

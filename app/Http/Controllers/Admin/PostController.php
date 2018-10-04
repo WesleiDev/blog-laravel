@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Author;
 use App\Models\Post;
 use App\Utilitarios;
 use App\UtilitariosFile;
@@ -17,7 +18,8 @@ class PostController extends Controller
     }
 
     public function add(){
-        return view('admin.post.add');
+        $authors = Author::all();
+        return view('admin.post.add', compact('authors'));
     }
 
     public function search()

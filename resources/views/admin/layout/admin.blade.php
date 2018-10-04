@@ -25,11 +25,9 @@
             <!-- partial:partials/_sidebar.html -->
             @include('admin.layout._menu')
             <!-- partial -->
-            <div class="content-wrapper">
                 <!-- ROW ENDS -->
                 @yield('content')
                 <!-- ROW ENDS -->
-            </div>
 
             @include('admin.layout._footer')
 
