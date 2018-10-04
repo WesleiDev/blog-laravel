@@ -1,6 +1,7 @@
 @extends('admin.layout.admin')
 
 @section('content')
+<div class="content-wrapper">
     <div class="row">
         <div class="col-lg-12 grid-margin">
             <div class="card performance-cards">
@@ -57,4 +58,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

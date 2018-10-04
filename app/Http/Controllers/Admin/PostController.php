@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Author;
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Utilitarios;
 use App\UtilitariosFile;
 use Illuminate\Http\Request;
@@ -18,8 +20,10 @@ class PostController extends Controller
     }
 
     public function add(){
-        $authors = Author::all();
-        return view('admin.post.add', compact('authors'));
+        $authors    = Author::all();
+        $categories = Category::all();
+        $tags       = Tag::all();
+        return view('admin.post.add', compact('authors', 'categories', 'tags'));
     }
 
     public function search()
@@ -49,10 +53,9 @@ class PostController extends Controller
     public function save(Request $request){
         try{
             $data = $request->all();
-            $data['category_id']= 1;
-            $data['author_id']= 1;
 
-            Post::create($data);
+            $post = Post::create($data);
+            $post->tags()->sync($data['tags']);
 
             \Session::flash('mensagem', ['msg'=>'Post Salvo com successo', 'status'=>'sucesso']);
         }catch(\Exception $e){
@@ -67,6 +70,7 @@ class PostController extends Controller
             $data = $request->all();
             $post = Post::find($data['id']);
             $post->update($data);
+            $post->tags()->sync($data['tags']);
 
 
             \Session::flash('mensagem', ['msg'=>'Post atualizado com successo', 'status'=>'sucesso']);
@@ -77,7 +81,10 @@ class PostController extends Controller
     }
 
     public function edit(Post $post){
-        return view('admin.post.edit', compact('post'));
+        $authors    = Author::all();
+        $categories = Category::all();
+        $tags       = Tag::all();
+        return view('admin.post.edit', compact('post','authors', 'categories', 'tags'));
 
     }
 

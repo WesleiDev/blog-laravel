@@ -24,17 +24,44 @@
     </div>
     <div class="col-md-6">
         <div class="form-group row">
-            <label >Author</label>
             <div class="col-sm-9">
+                <label >Author</label>
                 <select name="author_id" id="author_id" class="form-control">
                     @foreach($authors as $author)
-                        <option value="{{$author->id}}">{{$author->name}}</option>
+                        <option value="{{$author->id}}" {{isset($post)&& $post->author_id == $author->id ? 'selected':''}}
+                                >{{$author->name}}</option>
                     @endforeach
                 </select>
             </div>
         </div>
+        <div class="form-group row">
+            <div class="col-sm-9">
+                <label >Categoria</label>
+                <select name="category_id" id="category_id" class="form-control">
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}" {{isset($post)&& $post->category_id == $category->id ? 'selected':''}}
+                                >{{$category->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-9">
+                <label >Tags</label>
+                <select name="tags[]" id="tags" class="form-control" multiple="multiple" value="1">
+                    @foreach($tags as $tag)
+                        <option {{isset($post) && in_array(1, $post->tags->toArray()) ? 'selected': ''}}
+                                value="{{$tag->id}}"> {{$tag->name}} </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success mr-2">Salvar</button>
+        <a class="btn btn-light" href="{{route('admin.posts')}}">Cancelar</a>
     </div>
-</div>
+
+    </div>
 </div>
 
 <div class="form-group col-12">
@@ -43,9 +70,6 @@
     </textarea>
 </div>
 
-
-<button type="submit" class="btn btn-success mr-2">Salvar</button>
-<a class="btn btn-light" href="{{route('admin.posts')}}">Cancelar</a>
 
 @push('script')
 {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">--}}

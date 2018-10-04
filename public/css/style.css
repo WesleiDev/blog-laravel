@@ -14,3 +14,11 @@
 .left{
     float:left;
 }
+
+span.select2-selection.select2-selection--single {
+    height: 40px;
+}
+
+span#select2-category_id-container {
+    margin-top: 5px;
+}

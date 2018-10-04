@@ -23,4 +23,8 @@ class Post extends Model
             return env('APP_URL').'/documentos/posts/'.$this->attributes['image'];
         }
     }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
 }
